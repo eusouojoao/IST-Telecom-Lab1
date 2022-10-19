@@ -1,0 +1,54 @@
+\newpage
+\subsection{Desmodulaç\~ao de um sinal FM}
+Na secção anterior partimos do princípio que já temos o sinal m(t), mas na transmiss\~ao de um sinal FM é realizado uma modulação da mensagem, tal que o sinal que o recetor recebe é o seguinte:
+
+\begin{equation*}
+    x_{FM}(t)=A_c \cos{(2\pi f_c t + 2 \pi k_f  \int_{-\infty}^{t} m(\lambda) \,d\lambda)}
+\end{equation*}
+
+É então nossa tarefa recuperar a mensagem m(t) a partir do sinal $x_{FM}(t)$. Para tal existem 2 opções:
+
+\vspace{0.5em}
+\textbf{Opção 1:}
+Uma vez que a mensagem está na frequência do cosseno, a opção mais intuitiva seria derivar o sinal $x_{FM}(t)$ e utilizar um detetor de envolvente.
+
+\begin{equation*}
+    \frac{1}{2\pi} \frac{\partial x_{FM}(t)}{\partial x} =
+    A_c (f_c + k_f m(t))\cos{\left(2\pi f_c t + 2 \pi k_f  \int_{-\infty}^{t} m(\lambda) \,d\lambda + \frac{\pi}{2}\right)}
+\end{equation*}
+
+Uma vez que a amplitude do sinal resultante segue o andamento de m(t), pode-se utilizar um detetor de envolvente para recuperar a mensagem.
+
+\vspace{1.5em}
+
+\textbf{Opção 2:}
+
+Utilizar um desmodulador em quadratura. 
+Este desmodulador começa com um misturador que faz a heterodinagem do sinal, "arrastando-o" de modo a ficar centrado em $f_I$ em vez de $f_c$, visto que os filtros posteriores estão centrados nessa frequência.
+
+De seguida através do produto por um cosseno e um sinal retira a componente em fase ($x_I(t)$) e em quadratura ($x_Q(t)$) do sinal $x_{FM}(t)$. Obtendo-se o seguinte sinal:
+
+\begin{equation*}
+    x(t)=x_I(t)\cos{(2 \pi f_I t)} - x_Q(t)\sin{(2 \pi f_I t)}
+\end{equation*}
+
+em que:
+
+\begin{equation*}
+  \left\{\begin{array}{@{}l@{}}
+    x_I(t)= A_x \cos{(2 \pi k_f  \int_{-\infty}^{t} m(\lambda) \,d\lambda)}\\
+    x_Q(t)= A_x \sin{(2 \pi k_f  \int_{-\infty}^{t} m(\lambda) \,d\lambda)}
+  \end{array}\right.\,.
+\end{equation*}
+
+A partir das componentes em fase e quadratura, é simples descobrir a mensagem, uma vez que:
+
+\begin{equation*}
+    \frac{1}{2\pi} \arctan{\left(\frac{x_Q(t)}{x_I(t)}\right)}= k_f  \int_{-\infty}^{t} m(\lambda) \,d\lambda
+\end{equation*}
+
+Derivando o $\arctan{}$ e organizando as parcelas, obtém-se que a mensagem é dada por:
+
+\begin{equation*}
+    \therefore m(t) = \frac{1}{2\pi k_f} \frac{\partial}{\partial x}\left[\arctan{\left(\frac{x_Q(t)}{x_I(t)}\right)}\right]
+\end{equation*}

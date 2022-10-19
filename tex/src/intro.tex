@@ -1,0 +1,43 @@
+%=============================--A--=============================%
+\newpage
+\section{Introdução}
+Na multiplexaç\~ao estereofónica, transmitem-se 2 mensagens em simultâneo utilizando a mesma portadora: uma associada ao ouvido direito, $R$, e a outra ao esquerdo, $L$.
+
+A mensagem enviada num sinal stereo é da forma:
+
+\begin{equation*}
+    m(t)=\underbrace{\overbrace{[L+R]}^{\text{$m_1(t)$}}}_{\substack{\text{Componente}\\ \text{monofónica}}}+\ \underbrace{\overbrace{[L-R]}^{m_2(t)}\cdot\cos{(4\pi f_c t)}}_{\substack{\text{Componente estereofónica}\\ \text{DSB-SC}}} + \underbrace{K\cdot\cos{(2\pi f_c t)}}_{\text{Subportadora piloto}}
+\end{equation*}
+
+A {\hyperref[fig:stereo_spectrum]{Fig. 1}} explícita o formato espectral da mensagem, em que a banda dos sinais $m_1(t)$ e $m_2(t)$ é $B=15$ kHz e a frequência da subportadora é $f_c=19$ kHz (relevante mais tarde na parametrizaç\~ao dos filtros do processo de descodificaç\~ao).
+%portadora auxiliar??
+%desprezar o de 57k e de 67k (nota de rodapé?) boa ideia
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\linewidth]{img/mpx_signal_spectrum.jpeg}
+    \caption{Espectro da mensagem de um sinal FM stereo.}
+    \label{fig:stereo_spectrum}
+\end{figure}
+
+Após a recuperaç\~ao dos sinais $m_1(t)$ e $m_2(t)$, obtém-se trivialmente os sinais desejados, $L$ e $R$, através do processo de \textit{dematrixing}:
+
+\begin{equation*}
+  \left\{\begin{array}{@{}l@{}}
+    m_1(t)+m_2(t)=2L\\
+    m_1(t)-m_2(t)=2R
+  \end{array}\right.\,.
+\end{equation*}
+
+Apresenta-se então, na \hyperref[fig:desmodulador FM stereo]{Fig. 2} um esquema simplificado do processo de desmultiplexaç\~ao, posterior à desmodulaç\~ao do sinal FM.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\linewidth]{img/stereo_demultiplexing.jpeg}
+    \caption{Modelo simplificado do descodificador stereo.}
+    \label{fig:desmodulador FM stereo}
+\end{figure}
+%1
+%1
+%=============================--B--=============================%
+\input{src/intro/desmodulacao}
